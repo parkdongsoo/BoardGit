@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dong.Board.dao.BoardDao">
+  <select id="getViewlist" resultType="com.dong.Board.entity.BoardView">
+    select * from noticeView 
+    	where ${field} like '%${query}%' 
+			order by regdate desc limit #{offset}, #{size}
+  </select>
+  <select id="getView" resultType="com.dong.Board.entity.BoardView">
+    select * from noticeView where id=#{id}
+  </select>
+  <select id="getCount" resultType="_int">
+ 	select count(id) count from noticeView
+ 		where ${field} like '%${query}%'
+  </select>
+  <update id="update" parameterType="com.dong.Board.entity.BoardView">
+	update notice set title = #{title}, content = #{content} where id=#{id}
+  </update>
+  <insert id="insert" parameterType="com.dong.Board.entity.Board">
+  		insert into Notice(title, content, memberId)
+  		values(#{title},#{content},#{memberId})
+  </insert>
+  <delete id="delete" >
+  		delete from Notice
+  		where id = #{id}
+  </delete>
+  
+</mapper>

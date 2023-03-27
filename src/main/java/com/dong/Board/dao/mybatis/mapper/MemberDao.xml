@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dong.Board.dao.MemberDao">
+	<insert id="loginCheck" parameterType="com.dong.Board.entity.Member">
+  		insert into Member(pwd, email) values(#{password},#{email})
+  	</insert>
+  	<select id="findByEmail" resultType="com.dong.Board.entity.Member">
+  		select * from Member where email=#{email}
+  	</select>
+</mapper>
